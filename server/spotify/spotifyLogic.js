@@ -66,6 +66,16 @@ class SpotifyChad {
     return data;
   };
 
+  getArtistTopTracks = async (artistID) => {
+    const res = await fetch(
+      `https://api.spotify.com/v1/artists/${artistID}/top-tracks?market=GB`,
+      this.fetchOptions
+    );
+    const data = await res.json();
+
+    return data;
+  };
+
   // I'll figure this out later
   // getRecommendations = async (input) => {
   //   const res = await fetch(
