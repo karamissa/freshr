@@ -1,7 +1,7 @@
 const spotifyClient = require('../spotify/spotifyClient');
 
 const search = async (req, res) => {
-  const data = await spotifyClient.searchSpotify(req.params.value);
+  const data = await spotifyClient.search(req.params.value);
 
   res.send(data);
 };
