@@ -38,7 +38,7 @@ class SpotifyChad {
 
   search = async (input) => {
     const res = await fetch(
-      `https://api.spotify.com/v1/search?q=${input}&type=track,album,artist&offset=0&limit=3`,
+      `https://api.spotify.com/v1/search?q=${input}&type=track,artist&offset=0&limit=5`,
       this.fetchOptions
     );
     const data = await res.json();
@@ -49,16 +49,6 @@ class SpotifyChad {
   getTrack = async (trackID) => {
     const res = await fetch(
       `https://api.spotify.com/v1/tracks/${trackID}`,
-      this.fetchOptions
-    );
-    const data = await res.json();
-
-    return data;
-  };
-
-  getAlbum = async (albumID) => {
-    const res = await fetch(
-      `https://api.spotify.com/v1/albums/${albumID}`,
       this.fetchOptions
     );
     const data = await res.json();
