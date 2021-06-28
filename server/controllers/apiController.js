@@ -15,14 +15,14 @@ const getTrack = async (req, res) => {
     album: { images },
     external_urls: { spotify }
   } = data;
-  const { artists } = data;
+  const { artists: unprocessedArtists } = data;
 
-  const distilledArtists = artists.map((artist) => {
+  const artists = unprocessedArtists.map((unprocessedArtist) => {
     const {
       id,
       name,
       external_urls: { spotify }
-    } = artist;
+    } = unprocessedArtist;
     return { artistID: id, artistName: name, artistLink: spotify };
   });
 
@@ -31,14 +31,44 @@ const getTrack = async (req, res) => {
     trackName: name,
     trackLink: spotify,
     images,
-    artists: distilledArtists
+    artists
   });
 };
 
 const getArtist = async (req, res) => {
-  const data = await spotifyClient.getArtist(req.params.id);
+  const artistData = await spotifyClient.getArtist(req.params.id);
+  const { tracks } = await spotifyClient.getArtistTopTracks(req.params.id);
 
-  res.send(data);
+  const {
+    id,
+    name,
+    images,
+    external_urls: { spotify }
+  } = artistData;
+
+  const topTracks = tracks.map((track) => {
+    const trackArtists = track.artists.map((artist) => {
+      return {
+        artistID: artist.id,
+        artistName: artist.name
+      };
+    });
+
+    return {
+      trackID: track.id,
+      trackName: track.name,
+      trackLink: track.external_urls.spotify,
+      trackArtists
+    };
+  });
+
+  res.send({
+    artistID: id,
+    artistName: name,
+    artistLink: spotify,
+    images,
+    topTracks
+  });
 };
 
 // const getRecommendations = async (req, res) => {};
