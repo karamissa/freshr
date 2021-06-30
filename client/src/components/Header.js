@@ -4,12 +4,12 @@ import styled from 'styled-components';
 
 const Wrapper = styled.header`
   display: flex;
-  padding: 2% 0;
+  padding: 1% 3%;
   justify-content: space-between;
   align-items: center;
 
   @media (max-width: 768px) {
-    padding: 3%;
+    padding: 4% 5%;
   }
 `;
 
@@ -19,21 +19,13 @@ const Logo = styled.a`
   color: var(--blue);
 `;
 
-const GitHubLink = styled.a`
-  padding: 1% 1% 0 0;
-
-  @media (max-width: 768px) {
-    padding: 2% 2% 0 0;
-  }
-`;
-
 const Header = () => {
   return (
     <Wrapper>
       <Logo href="#">Freshr</Logo>
-      <GitHubLink href="#">
+      <a href="#">
         <FontAwesomeIcon icon={faGithub} size="2x" inverse />
-      </GitHubLink>
+      </a>
     </Wrapper>
   );
 };

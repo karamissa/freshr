@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 const FooterWrapper = styled.footer`
-  padding-bottom: 1em;
+  padding: 0.4em;
   text-align: center;
+  background-color: rgba(255, 255, 255, 0.05);
   color: var(--gray);
 `;
 
