@@ -3,21 +3,22 @@ const spotifyClient = require('../spotify/spotifyClient');
 const search = async (req, res) => {
   const searchData = await spotifyClient.search(req.params.value);
 
-  const artistResults = searchData.artists.items.map((artist) => {
+  let artistResults = searchData.artists.items.map((artist) => {
     return {
-      artistID: artist.id,
-      artistName: artist.name,
-      artistSpotifyLink: artist.external_urls.spotify,
-      artistImages: artist.images
+      id: artist.id,
+      name: artist.name,
+      spotifyLink: artist.external_urls.spotify,
+      images: artist.images
     };
   });
+  artistResults = artistResults.slice(0, 2);
 
   const trackResults = searchData.tracks.items.map((track) => {
     return {
-      trackID: track.id,
-      trackName: track.name,
-      trackSpotifyLink: track.external_urls.spotify,
-      trackImages: track.album.images
+      id: track.id,
+      name: track.name,
+      spotifyLink: track.external_urls.spotify,
+      images: track.album.images
     };
   });
 
