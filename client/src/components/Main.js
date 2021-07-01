@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import debounce from '../utils/debounce';
 import styled from 'styled-components';
 
 const Wrapper = styled.main`
@@ -47,12 +48,23 @@ const HelpText = styled.div`
 const Main = () => {
   const [userInput, setUserInput] = useState('');
 
+  const fetchSearchResults = debounce(async (value) => {
+    const res = await fetch(`http://localhost:5000/spotify/search/${value}`);
+    const data = await res.json();
+
+    console.log(data);
+    return data;
+  });
+
   return (
     <Wrapper>
       <SearchBar
         placeholder="Search"
         value={userInput}
-        onInput={(e) => setUserInput(e.target.value)}
+        onInput={(e) => {
+          setUserInput(e.target.value);
+          fetchSearchResults(userInput);
+        }}
       />
       <HelpText>
         <p>Are you looking for some fresh music recommendations?</p>
