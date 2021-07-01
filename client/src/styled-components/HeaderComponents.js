@@ -2,12 +2,12 @@ import styled from 'styled-components';
 
 const Wrapper = styled.header`
   display: flex;
-  padding: 1% 3%;
+  padding: 1% 3.5%;
   justify-content: space-between;
   align-items: center;
 
   @media (max-width: 768px) {
-    padding: 4% 5%;
+    padding: 2% 5%;
   }
 `;
 
