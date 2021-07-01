@@ -3,6 +3,7 @@
   --blue: #1e90ff;
   --black: black;
   --gray: #9ca3af;
+  --green: #10b981;
 }
 
 html {
@@ -17,7 +18,7 @@ body {
   background: url('./img/concert.jpg') no-repeat;
   background-position: center;
   background-size: cover;
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(1px);
 }
 
 a {
@@ -28,6 +29,11 @@ a {
 input {
   border: none;
   outline: none;
+}
+
+::placeholder {
+  color: var(--gray);
+  opacity: 1;
 }
 
 #root {

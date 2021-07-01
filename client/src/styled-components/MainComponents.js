@@ -22,7 +22,7 @@ const SearchBar = styled.input`
   font-size: 2em;
   color: var(--gray);
   background-color: inherit;
-  border-bottom: 2px solid var(--dark-gray);
+  border-bottom: 2px solid var(--gray);
   transition: border-bottom 0.4s ease-in-out;
   :focus {
     border-bottom: 2px solid var(--blue);
@@ -42,7 +42,7 @@ const SearchBar = styled.input`
 
 const HelpText = styled.div`
   color: var(--gray);
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.9);
   text-align: center;
   padding: 1.2em;
   border-radius: 20px;
