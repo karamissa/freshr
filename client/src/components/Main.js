@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.main`
@@ -14,12 +15,12 @@ const SearchBar = styled.input`
   width: 60%;
   padding: 0.2em;
   font-size: 2em;
-  color: var(--light-gray);
+  color: var(--gray);
   background-color: inherit;
   border-bottom: 2px solid var(--dark-gray);
   transition: border-bottom 0.4s ease-in-out;
   :focus {
-    border-bottom: 2px solid var(--light-gray);
+    border-bottom: 2px solid var(--blue);
   }
   :focus::placeholder {
     color: transparent;
@@ -43,22 +44,20 @@ const HelpText = styled.div`
   font-weight: 600;
 `;
 
-const HelpTextParagraph = styled.p``;
-
 const Main = () => {
+  const [userInput, setUserInput] = useState('');
+
   return (
     <Wrapper>
-      <SearchBar placeholder="Search" />
+      <SearchBar
+        placeholder="Search"
+        value={userInput}
+        onInput={(e) => setUserInput(e.target.value)}
+      />
       <HelpText>
-        <HelpTextParagraph>
-          Are you looking for some fresh music recommendations?
-        </HelpTextParagraph>
-        <HelpTextParagraph>
-          Well, you've come to the right place!
-        </HelpTextParagraph>
-        <HelpTextParagraph>
-          Search for a song/artist you like to get recommendations :{')'}
-        </HelpTextParagraph>
+        <p>Are you looking for some fresh music recommendations?</p>
+        <p>Well, you've come to the right place!</p>
+        <p>Search for a song/artist you like to get recommendations :{')'}</p>
       </HelpText>
     </Wrapper>
   );
