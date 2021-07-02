@@ -60,12 +60,19 @@ const getTrack = async (req, res) => {
     return { artistID: id, artistName: name, artistLink: spotify };
   });
 
+  const recommendations = await getRecommendations({
+    recSeed: 'track',
+    seedArtist: artists[0].artistID,
+    seedTracks: id
+  });
+
   res.send({
     trackID: id,
     trackName: name,
     trackLink: spotify,
     images,
-    artists
+    artists,
+    recommendations
   });
 };
 
@@ -96,15 +103,54 @@ const getArtist = async (req, res) => {
     };
   });
 
+  const recommendations = await getRecommendations({
+    recSeed: 'artist',
+    seedArtist: id,
+    seedTracks: topTracks.map((track) => track.trackID)
+  });
+
   res.send({
     artistID: id,
     artistName: name,
     artistLink: spotify,
     images,
-    topTracks
+    topTracks,
+    recommendations
   });
 };
 
-// const getRecommendations = async (req, res) => {};
+const getRecommendations = async (recInfo) => {
+  seedObj = {
+    seed_artists: recInfo.seedArtist,
+    seed_tracks:
+      recInfo.recSeed === 'artist'
+        ? recInfo.seedTracks.slice(0, 3)
+        : recInfo.seedTracks
+  };
 
-module.exports = { search, getTrack, getArtist };
+  const data = await spotifyClient.getRecommendations(seedObj);
+
+  const recommendations = data.tracks.map((track) => {
+    return {
+      id: track.id,
+      name: track.name,
+      spotifyLink: track.external_urls.spotify,
+      duration: track.duration_ms,
+      artists: track.artists.map((artist) => {
+        return {
+          artistID: artist.id,
+          artistName: artist.name,
+          artistSpotifyLink: artist.external_urls.spotify
+        };
+      })
+    };
+  });
+
+  return recommendations;
+};
+
+module.exports = {
+  search,
+  getTrack,
+  getArtist
+};

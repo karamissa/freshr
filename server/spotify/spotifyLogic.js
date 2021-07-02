@@ -76,16 +76,25 @@ class SpotifyChad {
     return data;
   };
 
-  // I'll figure this out later
-  // getRecommendations = async (input) => {
-  //   const res = await fetch(
-  //     `https://api.spotify.com/v1/recommendations`,
-  //     this.fetchOptions
-  //   );
-  //   const data = await res.json();
+  getRecommendations = async (seedObj) => {
+    let params = '';
 
-  //   return data;
-  // };
+    for (const seed in seedObj) {
+      const param = `${seed}=${seedObj[seed]}`;
+      params += param;
+      params += '&';
+    }
+
+    params = params.slice(0, -1);
+
+    const res = await fetch(
+      `https://api.spotify.com/v1/recommendations?${params}`,
+      this.fetchOptions
+    );
+    const data = await res.json();
+
+    return data;
+  };
 }
 
 module.exports = SpotifyChad;
