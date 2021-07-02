@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import {
   Wrapper,
+  Result,
+  Image,
+  Name,
   ArtistWrapper,
-  ArtistResult,
-  ArtistImage,
-  ArtistName,
-  TrackWrapper
+  NoPhoto,
+  TrackWrapper,
+  TrackInfo,
+  TrackArtistsNames
 } from '../styled-components/SearchWidgetComponents';
 
 const SearchWidget = ({ searchResults }) => {
@@ -22,23 +25,27 @@ const SearchWidget = ({ searchResults }) => {
       <ArtistWrapper>
         {artistResults &&
           artistResults.map((artist) => (
-            <ArtistResult key={artist.id} href={artist.spotifyLink}>
+            <Result key={artist.id} href={artist.spotifyLink}>
               {artist.images && (
-                <ArtistImage src={artist.images[2].url} alt={artist.name} />
+                <Image src={artist.images[2].url} alt={artist.name} />
               )}
+              {!artist.images && <NoPhoto />}
 
-              <ArtistName>{artist.name}</ArtistName>
-            </ArtistResult>
+              <Name>{artist.name}</Name>
+            </Result>
           ))}
       </ArtistWrapper>
 
       <TrackWrapper>
         {trackResults &&
           trackResults.map((track) => (
-            <ArtistResult key={track.id} href={track.spotifyLink}>
-              <ArtistImage src={track.images[2].url} alt={track.name} />
-              <ArtistName>{track.name}</ArtistName>
-            </ArtistResult>
+            <Result key={track.id} href={track.spotifyLink}>
+              <Image src={track.images[2].url} alt={track.name} />
+              <TrackInfo>
+                <Name>{track.name}</Name>
+                <TrackArtistsNames>{track.artists}</TrackArtistsNames>
+              </TrackInfo>
+            </Result>
           ))}
       </TrackWrapper>
     </Wrapper>

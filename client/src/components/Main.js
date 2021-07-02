@@ -27,13 +27,19 @@ const Main = () => {
           value={userInput}
           onInput={(e) => {
             setUserInput(e.target.value);
-            fetchSearchResults(userInput);
+            if (userInput) {
+              fetchSearchResults(userInput);
+            } else {
+              setSearchResults(null);
+            }
           }}
         />
-        {searchResults && <SearchWidget searchResults={searchResults} />}
+        {userInput && searchResults && (
+          <SearchWidget searchResults={searchResults} />
+        )}
       </Search>
 
-      {!searchResults && (
+      {(!userInput || !searchResults) && (
         <HelpText>
           <p>Are you looking for some fresh music recommendations?</p>
           <p>Well, you've come to the right place!</p>
