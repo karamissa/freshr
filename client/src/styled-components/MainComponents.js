@@ -3,17 +3,26 @@ import styled from 'styled-components';
 const Wrapper = styled.main`
   display: flex;
   flex-direction: column;
-  justify-content: stretch;
   align-items: center;
-  margin: 1em;
-  padding: 1em 0;
   gap: 2em;
 `;
 
 const Search = styled.div`
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 50%;
+
+  @media (max-width: 1024px) {
+    width: 60%;
+  }
+
+  @media (max-width: 768px) {
+    width: 70%;
+  }
+
+  @media (max-width: 600px) {
+    width: 80%;
+  }
 `;
 
 const SearchBar = styled.input`
@@ -21,30 +30,26 @@ const SearchBar = styled.input`
   padding: 0.2em;
   font-size: 2em;
   color: var(--gray);
-  background-color: inherit;
+  background-color: transparent;
   border-bottom: 2px solid var(--gray);
   transition: border-bottom 0.4s ease-in-out;
+
   :focus {
     border-bottom: 2px solid var(--blue);
   }
+
   :focus::placeholder {
     color: transparent;
-  }
-
-  @media (max-width: 1024px) {
-    width: 70%;
-  }
-
-  @media (max-width: 768px) {
-    width: 85%;
   }
 `;
 
 const HelpText = styled.div`
-  color: var(--gray);
-  background: rgba(0, 0, 0, 0.9);
+  color: var(--white);
+  background: var(--black);
+  border: 2px solid var(--blue);
   text-align: center;
   padding: 1.2em;
+  margin: 1em;
   border-radius: 20px;
   font-weight: 600;
 `;
