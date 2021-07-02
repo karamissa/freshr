@@ -4,19 +4,31 @@ const search = async (req, res) => {
   const searchData = await spotifyClient.search(req.params.value);
 
   let artistResults = searchData.artists.items.map((artist) => {
+    let images = null;
+    if (artist.images[0] !== undefined) {
+      images = artist.images;
+    }
+
     return {
       id: artist.id,
       name: artist.name,
       spotifyLink: artist.external_urls.spotify,
-      images: artist.images
+      images
     };
   });
   artistResults = artistResults.slice(0, 2);
 
   const trackResults = searchData.tracks.items.map((track) => {
+    let trackArtists = track.artists.map((artist) => {
+      return artist.name;
+    });
+
+    trackArtists = trackArtists.join(', ');
+
     return {
       id: track.id,
       name: track.name,
+      artists: trackArtists,
       spotifyLink: track.external_urls.spotify,
       images: track.album.images
     };
