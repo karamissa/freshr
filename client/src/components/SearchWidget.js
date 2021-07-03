@@ -11,7 +11,7 @@ import {
   TrackArtistsNames
 } from '../styled-components/SearchWidgetComponents';
 
-const SearchWidget = ({ searchResults }) => {
+const SearchWidget = ({ searchResults, setChosenResult }) => {
   const [previousSearchResults, setPreviousSearchResults] = useState({});
 
   if (searchResults !== previousSearchResults) {
@@ -20,12 +20,25 @@ const SearchWidget = ({ searchResults }) => {
 
   const { artistResults, trackResults } = previousSearchResults;
 
+  const handleArtistClick = (e) => {
+    let artistID;
+    if (e.target.tagName === 'A') {
+      artistID = e.target.dataset.id;
+    }
+
+    if (e.target.parentElement.tagName === 'A') {
+      artistID = e.target.parentElement.dataset.id;
+    }
+
+    setChosenResult(artistID);
+  };
+
   return (
     <Wrapper>
-      <ArtistWrapper>
+      <ArtistWrapper onClick={handleArtistClick}>
         {artistResults &&
           artistResults.map((artist) => (
-            <Result key={artist.id} href={artist.spotifyLink}>
+            <Result data-id={artist.id} key={artist.id}>
               {artist.images && (
                 <Image src={artist.images[2].url} alt={artist.name} />
               )}
@@ -39,7 +52,7 @@ const SearchWidget = ({ searchResults }) => {
       <TrackWrapper>
         {trackResults &&
           trackResults.map((track) => (
-            <Result key={track.id} href={track.spotifyLink}>
+            <Result data-id={track.id} key={track.id}>
               <Image src={track.images[2].url} alt={track.name} />
               <TrackInfo>
                 <Name>{track.name}</Name>
