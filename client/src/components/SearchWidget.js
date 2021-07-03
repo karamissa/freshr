@@ -1,24 +1,87 @@
-import { useState } from 'react';
-import {
-  Wrapper,
-  Result,
-  Image,
-  Name,
-  ArtistWrapper,
-  NoPhoto,
-  TrackWrapper,
-  TrackInfo,
-  TrackArtistsNames
-} from '../styled-components/SearchWidgetComponents';
+import { useContext, useEffect } from 'react';
+import styled from 'styled-components';
+import { RecommendationsContext } from '../contexts/RecommendationsContext';
 
-const SearchWidget = ({ searchResults, setChosenResult }) => {
-  const [previousSearchResults, setPreviousSearchResults] = useState({});
+const Wrapper = styled.div`
+  background-color: var(--black);
+  color: var(--white);
+  width: 102%;
+  font-weight: bold;
+  z-index: 2;
+  margin-bottom: 1em;
+`;
 
-  if (searchResults !== previousSearchResults) {
-    setPreviousSearchResults(searchResults);
+const Image = styled.img`
+  margin: 0.2em;
+  height: 3.5em;
+  width: 3.5em;
+`;
+
+const Result = styled.a`
+  display: flex;
+  align-items: center;
+  margin-left: 0.5em;
+  gap: 0.5em;
+`;
+
+const Name = styled.p`
+  margin: 0.2em 0 0 0;
+  font-weight: bold;
+`;
+
+const ArtistWrapper = styled.div`
+  ::before {
+    display: block;
+    content: 'Artist Results:';
+    font-weight: bold;
+    padding: 0.2em 0.4em;
+    color: var(--blue);
   }
+`;
 
-  const { artistResults, trackResults } = previousSearchResults;
+const NoPhoto = styled.div`
+  margin: 0.2em;
+  height: 3.5em;
+  width: 3.5em;
+  background-color: inherit;
+`;
+
+const TrackWrapper = styled.div`
+  ::before {
+    display: block;
+    content: 'Track Results:';
+    font-weight: bold;
+    padding: 0.2em 0.4em;
+    color: var(--blue);
+  }
+`;
+
+const TrackInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const TrackArtistsNames = styled.p`
+  color: var(--gray);
+  font-size: 0.8em;
+  margin: 0.4em 0 0 0;
+`;
+
+const SearchWidget = () => {
+  const {
+    searchSuggestions,
+    prevSearchSuggestions,
+    setPrevSearchSuggestions,
+    setSearchResult
+  } = useContext(RecommendationsContext);
+
+  useEffect(() => {
+    if (searchSuggestions !== prevSearchSuggestions) {
+      setPrevSearchSuggestions(searchSuggestions);
+    }
+  }, [searchSuggestions, prevSearchSuggestions, setPrevSearchSuggestions]);
+
+  const { artistResults, trackResults } = prevSearchSuggestions;
 
   const handleArtistClick = (e) => {
     let artistID;
@@ -30,7 +93,7 @@ const SearchWidget = ({ searchResults, setChosenResult }) => {
       artistID = e.target.parentElement.dataset.id;
     }
 
-    setChosenResult(artistID);
+    setSearchResult(artistID);
   };
 
   return (

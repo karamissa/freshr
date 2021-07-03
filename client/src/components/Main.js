@@ -1,45 +1,34 @@
-import { useState } from 'react';
-import debounce from '../utils/debounce';
-import {
-  Wrapper,
-  Search,
-  SearchBar,
-  HelpText
-} from '../styled-components/MainComponents';
-import SearchWidget from './SearchWidget';
+import { useContext } from 'react';
+import styled from 'styled-components';
+import { RecommendationsContext } from '../contexts/RecommendationsContext';
+import SearchSection from './SearchSection';
+
+const Wrapper = styled.main`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+`;
+
+const HelpText = styled.div`
+  color: var(--white);
+  background: var(--black);
+  border: 2px solid var(--blue);
+  text-align: center;
+  padding: 1.2em;
+  margin: 1em;
+  border-radius: 20px;
+  font-weight: 600;
+`;
 
 const Main = () => {
-  const [userInput, setUserInput] = useState('');
-  const [searchResults, setSearchResults] = useState(null);
-
-  const fetchSearchResults = debounce(async (value) => {
-    const res = await fetch(`http://localhost:5000/spotify/search/${value}`);
-    const data = await res.json();
-
-    setSearchResults(data);
-  });
+  const { userInput, searchSuggestions } = useContext(RecommendationsContext);
 
   return (
     <Wrapper>
-      <Search>
-        <SearchBar
-          placeholder="Search"
-          value={userInput}
-          onInput={(e) => {
-            setUserInput(e.target.value);
-            if (userInput) {
-              fetchSearchResults(userInput);
-            } else {
-              setSearchResults(null);
-            }
-          }}
-        />
-        {userInput && searchResults && (
-          <SearchWidget searchResults={searchResults} />
-        )}
-      </Search>
+      <SearchSection />
 
-      {(!userInput || !searchResults) && (
+      {(!userInput || !searchSuggestions) && (
         <HelpText>
           <p>Are you looking for some fresh music recommendations?</p>
           <p>Well, you've come to the right place!</p>
