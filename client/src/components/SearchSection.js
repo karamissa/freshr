@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { RecommendationsContext } from '../contexts/RecommendationsContext';
 import SearchWidget from './SearchWidget';
 
-const Search = styled.div`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
@@ -45,7 +45,9 @@ const SearchSection = () => {
     setUserInput,
     fetchSearchSuggestions,
     searchSuggestions,
-    setSearchSuggestions
+    setSearchSuggestions,
+    chosenSuggestion,
+    setChosenSuggestion
   } = useContext(RecommendationsContext);
 
   useEffect(() => {
@@ -58,16 +60,19 @@ const SearchSection = () => {
   }, [userInput, fetchSearchSuggestions, setSearchSuggestions]);
 
   return (
-    <Search>
+    <Wrapper>
       <SearchBar
         placeholder="Search"
         value={userInput}
         onInput={(e) => {
           setUserInput(e.target.value);
+          if (chosenSuggestion) {
+            setChosenSuggestion(null);
+          }
         }}
       />
-      {userInput && searchSuggestions && <SearchWidget />}
-    </Search>
+      {userInput && searchSuggestions && !chosenSuggestion && <SearchWidget />}
+    </Wrapper>
   );
 };
 

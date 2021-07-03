@@ -7,7 +7,7 @@ const RecommendationsContextProvider = ({ children }) => {
   const [userInput, setUserInput] = useState('');
   const [searchSuggestions, setSearchSuggestions] = useState(null);
   const [prevSearchSuggestions, setPrevSearchSuggestions] = useState({});
-  const [searchResult, setSearchResult] = useState(null);
+  const [chosenSuggestion, setChosenSuggestion] = useState(null);
 
   // Check this: https://www.freecodecamp.org/news/debounce-and-throttle-in-react-with-hooks/
   const fetchSearchSuggestions = useRef(
@@ -33,8 +33,8 @@ const RecommendationsContextProvider = ({ children }) => {
     prevSearchSuggestions,
     setPrevSearchSuggestions,
 
-    searchResult,
-    setSearchResult
+    chosenSuggestion,
+    setChosenSuggestion
   };
 
   return (

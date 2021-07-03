@@ -72,7 +72,7 @@ const SearchWidget = () => {
     searchSuggestions,
     prevSearchSuggestions,
     setPrevSearchSuggestions,
-    setSearchResult
+    setChosenSuggestion
   } = useContext(RecommendationsContext);
 
   useEffect(() => {
@@ -93,7 +93,20 @@ const SearchWidget = () => {
       artistID = e.target.parentElement.dataset.id;
     }
 
-    setSearchResult(artistID);
+    setChosenSuggestion({ type: 'artist', id: artistID });
+  };
+
+  const handleTrackClick = (e) => {
+    let trackID;
+    if (e.target.tagName === 'A') {
+      trackID = e.target.dataset.id;
+    }
+
+    if (e.target.parentElement.tagName === 'A') {
+      trackID = e.target.parentElement.dataset.id;
+    }
+
+    setChosenSuggestion({ type: 'track', id: trackID });
   };
 
   return (
@@ -112,7 +125,7 @@ const SearchWidget = () => {
           ))}
       </ArtistWrapper>
 
-      <TrackWrapper>
+      <TrackWrapper onClick={handleTrackClick}>
         {trackResults &&
           trackResults.map((track) => (
             <Result data-id={track.id} key={track.id}>

@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import styled from 'styled-components';
 import { RecommendationsContext } from '../contexts/RecommendationsContext';
 import SearchSection from './SearchSection';
+import SearchResults from './SearchResult';
 
 const Wrapper = styled.main`
   display: flex;
@@ -22,7 +23,9 @@ const HelpText = styled.div`
 `;
 
 const Main = () => {
-  const { userInput, searchSuggestions } = useContext(RecommendationsContext);
+  const { userInput, searchSuggestions, chosenSuggestion } = useContext(
+    RecommendationsContext
+  );
 
   return (
     <Wrapper>
@@ -35,6 +38,8 @@ const Main = () => {
           <p>Search for a song/artist you like to get recommendations :{')'}</p>
         </HelpText>
       )}
+
+      {chosenSuggestion && <SearchResults />}
     </Wrapper>
   );
 };
