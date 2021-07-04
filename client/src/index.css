@@ -5,6 +5,26 @@
   --white: white;
   --gray: #9ca3af;
   --green: #10b981;
+  --red: #ff4040;
+}
+
+/* ::-webkit-scrollbar the scrollbar.
+::-webkit-scrollbar-button the buttons on the scrollbar (arrows pointing upwards and downwards).
+::-webkit-scrollbar-thumb the draggable scrolling handle.
+::-webkit-scrollbar-track the track (progress bar) of the scrollbar.
+::-webkit-scrollbar-track-piece the track (progress bar) NOT covered by the handle. */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(56, 56, 56);
+  border-radius: 20px;
 }
 
 html {
@@ -19,7 +39,13 @@ body {
   background: url('./img/concert.jpg') no-repeat;
   background-position: center;
   background-size: cover;
+  overflow: overlay;
   backdrop-filter: blur(2px);
+}
+
+p {
+  margin: 0;
+  padding: 0;
 }
 
 a {
