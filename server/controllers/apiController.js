@@ -46,6 +46,7 @@ const getTrack = async (req, res) => {
   const {
     id,
     name,
+    type,
     album: { images },
     external_urls: { spotify }
   } = data;
@@ -67,9 +68,10 @@ const getTrack = async (req, res) => {
   });
 
   res.send({
-    trackID: id,
-    trackName: name,
-    trackLink: spotify,
+    id: id,
+    track: name,
+    type,
+    link: spotify,
     images,
     artists,
     recommendations
@@ -83,6 +85,7 @@ const getArtist = async (req, res) => {
   const {
     id,
     name,
+    type,
     images,
     external_urls: { spotify }
   } = artistData;
@@ -110,9 +113,10 @@ const getArtist = async (req, res) => {
   });
 
   res.send({
-    artistID: id,
-    artistName: name,
-    artistLink: spotify,
+    id: id,
+    name: name,
+    link: spotify,
+    type,
     images,
     topTracks,
     recommendations
