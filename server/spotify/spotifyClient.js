@@ -11,6 +11,11 @@ const spotifyClient = new SpotifyChad({
   spotifyClientSecret
 });
 
+const interval = 1000 * 60 * 60;
+
 spotifyClient.setupClient();
+setInterval(() => {
+  spotifyClient.setupClient();
+}, interval);
 
 module.exports = spotifyClient;
