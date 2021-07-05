@@ -3,10 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYoutube, faSpotify } from '@fortawesome/free-brands-svg-icons';
 
 const Wrapper = styled.div`
-  background-color: var(--black);
+  width: 40%;
+  background-color: rgba(0, 0, 0, 0.9);
   border: 2px solid var(--blue);
   border-radius: 20px;
-  padding: 1em;
+  padding: 0.8em;
   margin-bottom: 1em;
   display: flex;
   flex-direction: column;
@@ -68,11 +69,17 @@ const TopTracksWrapper = styled.div`
   flex-direction: column;
   color: var(--gray);
   font-weight: bold;
+
+  ::before {
+    content: 'Top Tracks:';
+    color: var(--blue);
+  }
 `;
 
 const Track = styled.div`
   display: flex;
   justify-content: space-between;
+  gap: 1em;
   padding: 0.6em 0em;
 `;
 

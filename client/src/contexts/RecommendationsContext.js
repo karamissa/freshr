@@ -15,8 +15,6 @@ const RecommendationsContextProvider = ({ children }) => {
       const res = await fetch(`http://localhost:5000/spotify/search/${value}`);
       const data = await res.json();
 
-      console.log(data);
-
       setSearchSuggestions(data);
     }, 500)
   ).current;

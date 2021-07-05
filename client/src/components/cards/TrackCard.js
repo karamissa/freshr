@@ -3,10 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYoutube, faSpotify } from '@fortawesome/free-brands-svg-icons';
 
 const Wrapper = styled.div`
-  background-color: var(--black);
+  width: 20%;
+  background-color: rgba(0, 0, 0, 0.9);
   border: 2px solid var(--blue);
   border-radius: 20px;
   padding: 1em;
+  gap: 0.5em;
   margin-bottom: 1em;
   display: flex;
   flex-direction: column;
@@ -14,13 +16,12 @@ const Wrapper = styled.div`
 `;
 
 const Image = styled.img`
-  height: 300px;
-  width: 300px;
+  height: 100%;
+  width: 100%;
   border-radius: 10px;
 `;
 
 const Title = styled.p`
-  margin: 0.5em 0 0 0;
   font-size: 2em;
   font-weight: bold;
 `;
@@ -28,15 +29,13 @@ const Title = styled.p`
 const TrackArtistsNames = styled.p`
   color: var(--gray);
   font-size: 1.2em;
-  margin: 0.4em 0 0 0;
 `;
 
 const Links = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 10%;
-  margin-top: auto;
-  justify-content: space-around;
+  gap: 0.5em;
   align-items: center;
 `;
 
