@@ -12,7 +12,7 @@ const search = async (req, res) => {
     return {
       id: artist.id,
       name: artist.name,
-      spotifyLink: artist.external_urls.spotify,
+      link: artist.external_urls.spotify,
       images
     };
   });
@@ -29,7 +29,7 @@ const search = async (req, res) => {
       id: track.id,
       name: track.name,
       artists: trackArtists,
-      spotifyLink: track.external_urls.spotify,
+      link: track.external_urls.spotify,
       images: track.album.images
     };
   });
@@ -58,18 +58,18 @@ const getTrack = async (req, res) => {
       name,
       external_urls: { spotify }
     } = unprocessedArtist;
-    return { artistID: id, artistName: name, artistLink: spotify };
+    return { id, name, link: spotify };
   });
 
   const recommendations = await getRecommendations({
     recSeed: 'track',
-    seedArtist: artists[0].artistID,
+    seedArtist: artists[0].id,
     seedTracks: id
   });
 
   res.send({
     id: id,
-    track: name,
+    name,
     type,
     link: spotify,
     images,
@@ -91,18 +91,18 @@ const getArtist = async (req, res) => {
   } = artistData;
 
   const topTracks = tracks.map((track) => {
-    const trackArtists = track.artists.map((artist) => {
+    const artists = track.artists.map((artist) => {
       return {
-        artistID: artist.id,
-        artistName: artist.name
+        id: artist.id,
+        name: artist.name
       };
     });
 
     return {
-      trackID: track.id,
-      trackName: track.name,
-      trackLink: track.external_urls.spotify,
-      trackArtists
+      id: track.id,
+      name: track.name,
+      link: track.external_urls.spotify,
+      artists
     };
   });
 
@@ -114,7 +114,7 @@ const getArtist = async (req, res) => {
 
   res.send({
     id: id,
-    name: name,
+    name,
     link: spotify,
     type,
     images,
@@ -140,12 +140,11 @@ const getRecommendations = async (recInfo) => {
       name: track.name,
       images: track.album.images,
       spotifyLink: track.external_urls.spotify,
-      duration: track.duration_ms,
       artists: track.artists.map((artist) => {
         return {
-          artistID: artist.id,
-          artistName: artist.name,
-          artistSpotifyLink: artist.external_urls.spotify
+          id: artist.id,
+          name: artist.name,
+          link: artist.external_urls.spotify
         };
       })
     };

@@ -127,22 +127,22 @@ const ArtistCard = ({ artist }) => {
       <TopTracksWrapper>
         {artist.topTracks.map((track, index) => {
           return (
-            <Track key={track.trackID}>
+            <Track key={track.id}>
               <TrackName>
-                {index + 1}. {track.trackName}
+                {index + 1}. {track.name}
               </TrackName>
               <TrackLinks>
                 <Link
                   target="_blank"
                   rel="noopener noreferrer"
-                  href={track.trackLink}
+                  href={track.link}
                 >
                   <FontAwesomeIcon icon={faSpotify} size="lg" />
                 </Link>
                 <Link
                   target="_blank"
                   rel="noopener noreferrer"
-                  href={`https://www.youtube.com/results?search_query=${track.trackName}+${artist.name}`}
+                  href={`https://www.youtube.com/results?search_query=${track.name}+${artist.name}`}
                 >
                   <FontAwesomeIcon icon={faYoutube} size="lg" />
                 </Link>

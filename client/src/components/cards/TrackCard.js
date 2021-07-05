@@ -62,8 +62,8 @@ const TrackCard = ({ track }) => {
   return (
     <Wrapper>
       <Image src={track.images[0].url} />
-      <Title>{track.track}</Title>
-      <TrackArtistsNames>{track.artists[0].artistName}</TrackArtistsNames>
+      <Title>{track.name}</Title>
+      <TrackArtistsNames>{track.artists[0].name}</TrackArtistsNames>
       <Links>
         <SpotifyLink
           target="_blank"
@@ -76,7 +76,7 @@ const TrackCard = ({ track }) => {
         <YoutubeLink
           target="_blank"
           rel="noopener noreferrer"
-          href={`https://www.youtube.com/results?search_query=${track.track}+${track.artists[0].artistName}`}
+          href={`https://www.youtube.com/results?search_query=${track.name}+${track.artists[0].name}`}
         >
           <FontAwesomeIcon icon={faYoutube} size="2x" />
           Youtube

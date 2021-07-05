@@ -72,7 +72,7 @@ const Recommendations = ({ recommendations }) => {
               <Image src={recommendation.images[2].url} />
               <InfoWrapper>
                 <Title>{recommendation.name}</Title>
-                <ArtistName>{recommendation.artists[0].artistName}</ArtistName>
+                <ArtistName>{recommendation.artists[0].name}</ArtistName>
               </InfoWrapper>
               <Links>
                 <SpotifyLink
@@ -85,7 +85,7 @@ const Recommendations = ({ recommendations }) => {
                 <YoutubeLink
                   target="_blank"
                   rel="noopener noreferrer"
-                  href={`https://www.youtube.com/results?search_query=${recommendation.name}+${recommendation.artists[0].artistName}`}
+                  href={`https://www.youtube.com/results?search_query=${recommendation.name}+${recommendation.artists[0].name}`}
                 >
                   <FontAwesomeIcon icon={faYoutube} size="lg" />
                 </YoutubeLink>
