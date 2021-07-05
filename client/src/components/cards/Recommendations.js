@@ -7,11 +7,11 @@ const Wrapper = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 1em;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 800px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 600px) {
     grid-template-columns: 1fr;
   }
 `;

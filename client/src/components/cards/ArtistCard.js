@@ -13,6 +13,10 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 1em;
+
+  @media (max-width: 1200px) {
+    display: none;
+  }
 `;
 
 const ArtistInfo = styled.div`
