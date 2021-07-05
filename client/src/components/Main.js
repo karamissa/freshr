@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import styled from 'styled-components';
 import { RecommendationsContext } from '../contexts/RecommendationsContext';
 import SearchSection from './SearchSection';
-import SearchResults from './SearchResult';
+import SearchResult from './SearchResult';
 
 const Wrapper = styled.main`
   display: flex;
@@ -39,7 +39,7 @@ const Main = () => {
         </HelpText>
       )}
 
-      {chosenSuggestion && <SearchResults />}
+      {chosenSuggestion && <SearchResult />}
     </Wrapper>
   );
 };

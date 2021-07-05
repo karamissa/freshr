@@ -138,6 +138,7 @@ const getRecommendations = async (recInfo) => {
     return {
       id: track.id,
       name: track.name,
+      images: track.album.images,
       spotifyLink: track.external_urls.spotify,
       duration: track.duration_ms,
       artists: track.artists.map((artist) => {
