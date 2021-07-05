@@ -3,13 +3,14 @@ import styled from 'styled-components';
 import { RecommendationsContext } from '../contexts/RecommendationsContext';
 import TrackCard from './cards/TrackCard';
 import ArtistCard from './cards/ArtistCard';
-// import Recommendations from './cards/Recommendations';
+import Recommendations from './cards/Recommendations';
 
 const Wrapper = styled.div`
-  flex: 1;
   display: flex;
   color: var(--white);
-  width: 30%;
+  align-items: center;
+  gap: 0.5em;
+  margin: 0 1em 1.5em;
 `;
 
 const SearchResults = () => {
@@ -37,7 +38,7 @@ const SearchResults = () => {
         <>
           {result.type === 'track' && <TrackCard track={result} />}
           {result.type === 'artist' && <ArtistCard artist={result} />}
-          {/* <Recommendations recommendations={result.recommendations} /> */}
+          <Recommendations recommendations={result.recommendations} />
         </>
       )}
     </Wrapper>
