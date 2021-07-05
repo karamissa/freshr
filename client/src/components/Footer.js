@@ -17,7 +17,12 @@ const Footer = () => {
     <Wrapper>
       <Line>
         Designed &amp; Developed by{' '}
-        <a href="/" style={{ color: 'white' }}>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://github.com/beardedpirate"
+          style={{ color: 'white' }}
+        >
           Karam Issa
         </a>
         .

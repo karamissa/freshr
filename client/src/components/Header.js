@@ -13,7 +13,7 @@ const Wrapper = styled.header`
   }
 `;
 
-const Logo = styled.a`
+const Logo = styled.h1`
   font-size: 3em;
   font-weight: bold;
   color: var(--blue);
@@ -22,8 +22,8 @@ const Logo = styled.a`
 const Header = () => {
   return (
     <Wrapper>
-      <Logo href="/">Freshr</Logo>
-      <a href="/">
+      <Logo>Freshr</Logo>
+      <a target="_blank" rel="noopener noreferrer" href="/">
         <FontAwesomeIcon icon={faGithub} size="2x" inverse />
       </a>
     </Wrapper>

@@ -104,11 +104,19 @@ const ArtistCard = ({ artist }) => {
         <InfoWrapper>
           <Name>{artist.name}</Name>
           <Links>
-            <SpotifyLink href={artist.link}>
+            <SpotifyLink
+              target="_blank"
+              rel="noopener noreferrer"
+              href={artist.link}
+            >
               <FontAwesomeIcon icon={faSpotify} size="2x" />
               Spotify
             </SpotifyLink>
-            <YoutubeLink href={artist.link}>
+            <YoutubeLink
+              target="_blank"
+              rel="noopener noreferrer"
+              href={artist.link}
+            >
               <FontAwesomeIcon icon={faYoutube} size="2x" />
               Youtube
             </YoutubeLink>
@@ -124,10 +132,18 @@ const ArtistCard = ({ artist }) => {
                 {index + 1}. {track.trackName}
               </TrackName>
               <TrackLinks>
-                <Link href={track.trackLink}>
+                <Link
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={track.trackLink}
+                >
                   <FontAwesomeIcon icon={faSpotify} size="lg" />
                 </Link>
-                <Link href={track.trackLink}>
+                <Link
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={`https://www.youtube.com/results?search_query=${track.trackName}+${artist.name}`}
+                >
                   <FontAwesomeIcon icon={faYoutube} size="lg" />
                 </Link>
               </TrackLinks>

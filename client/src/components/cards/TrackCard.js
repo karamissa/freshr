@@ -65,11 +65,19 @@ const TrackCard = ({ track }) => {
       <Title>{track.track}</Title>
       <TrackArtistsNames>{track.artists[0].artistName}</TrackArtistsNames>
       <Links>
-        <SpotifyLink href={track.link}>
+        <SpotifyLink
+          target="_blank"
+          rel="noopener noreferrer"
+          href={track.link}
+        >
           <FontAwesomeIcon icon={faSpotify} size="2x" />
           Spotify
         </SpotifyLink>
-        <YoutubeLink href={track.link}>
+        <YoutubeLink
+          target="_blank"
+          rel="noopener noreferrer"
+          href={`https://www.youtube.com/results?search_query=${track.track}+${track.artists[0].artistName}`}
+        >
           <FontAwesomeIcon icon={faYoutube} size="2x" />
           Youtube
         </YoutubeLink>

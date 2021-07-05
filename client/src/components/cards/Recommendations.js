@@ -75,10 +75,18 @@ const Recommendations = ({ recommendations }) => {
                 <ArtistName>{recommendation.artists[0].artistName}</ArtistName>
               </InfoWrapper>
               <Links>
-                <SpotifyLink href={recommendation.spotifyLink}>
+                <SpotifyLink
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={recommendation.spotifyLink}
+                >
                   <FontAwesomeIcon icon={faSpotify} size="lg" />
                 </SpotifyLink>
-                <YoutubeLink href={recommendation.spotifyLink}>
+                <YoutubeLink
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={`https://www.youtube.com/results?search_query=${recommendation.name}+${recommendation.artists[0].artistName}`}
+                >
                   <FontAwesomeIcon icon={faYoutube} size="lg" />
                 </YoutubeLink>
               </Links>
