@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYoutube, faSpotify } from '@fortawesome/free-brands-svg-icons';
+import { useContext } from 'react';
+import { RecommendationsContext } from '../../contexts/RecommendationsContext';
 
 const Wrapper = styled.div`
-  width: 40%;
+  flex: 1;
   background-color: rgba(0, 0, 0, 0.9);
   border: 2px solid var(--blue);
   border-radius: 20px;
@@ -69,6 +71,7 @@ const YoutubeLink = styled(Link)`
 `;
 
 const TopTracksWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   color: var(--gray);
@@ -89,6 +92,12 @@ const Track = styled.div`
 
 const TrackName = styled.p`
   font-size: 1.2em;
+  cursor: pointer;
+  transition: color 0.4s;
+
+  :hover {
+    color: var(--white);
+  }
 `;
 
 const TrackLinks = styled.div`
@@ -97,6 +106,12 @@ const TrackLinks = styled.div`
 `;
 
 const ArtistCard = ({ artist }) => {
+  const { setChosenSuggestion } = useContext(RecommendationsContext);
+
+  const handleTrackClick = (e) => {
+    setChosenSuggestion({ id: e.target.dataset.id, type: 'track' });
+  };
+
   return (
     <Wrapper>
       <ArtistInfo>
@@ -128,24 +143,28 @@ const ArtistCard = ({ artist }) => {
         {artist.topTracks.map((track, index) => {
           return (
             <Track key={track.id}>
-              <TrackName>
+              <TrackName
+                data-id={track.id}
+                className="track-name"
+                onClick={handleTrackClick}
+              >
                 {index + 1}. {track.name}
               </TrackName>
               <TrackLinks>
-                <Link
+                <SpotifyLink
                   target="_blank"
                   rel="noopener noreferrer"
                   href={track.link}
                 >
                   <FontAwesomeIcon icon={faSpotify} size="lg" />
-                </Link>
-                <Link
+                </SpotifyLink>
+                <YoutubeLink
                   target="_blank"
                   rel="noopener noreferrer"
                   href={`https://www.youtube.com/results?search_query=${track.name}+${artist.name}`}
                 >
                   <FontAwesomeIcon icon={faYoutube} size="lg" />
-                </Link>
+                </YoutubeLink>
               </TrackLinks>
             </Track>
           );

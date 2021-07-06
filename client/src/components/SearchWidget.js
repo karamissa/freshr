@@ -3,11 +3,14 @@ import styled from 'styled-components';
 import { RecommendationsContext } from '../contexts/RecommendationsContext';
 
 const Wrapper = styled.div`
+  position: absolute;
   background-color: var(--black);
   color: var(--white);
+  border-radius: 10px;
   width: 102%;
   font-weight: bold;
   margin-bottom: 1em;
+  overflow: hidden;
 `;
 
 const Image = styled.img`
@@ -19,8 +22,13 @@ const Image = styled.img`
 const Result = styled.a`
   display: flex;
   align-items: center;
-  margin-left: 0.5em;
+  padding-left: 0.5em;
   gap: 0.5em;
+  transition: background-color 0.4s ease-out;
+
+  :hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
 `;
 
 const Name = styled.p`
@@ -99,10 +107,10 @@ const SearchWidget = () => {
     let trackID;
     if (e.target.tagName === 'A') {
       trackID = e.target.dataset.id;
-    }
-
-    if (e.target.parentElement.tagName === 'A') {
+    } else if (e.target.tagName === 'IMG') {
       trackID = e.target.parentElement.dataset.id;
+    } else {
+      trackID = e.target.parentElement.parentElement.dataset.id;
     }
 
     setChosenSuggestion({ type: 'track', id: trackID });

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYoutube, faSpotify } from '@fortawesome/free-brands-svg-icons';
 
 const Wrapper = styled.div`
-  width: 20%;
+  flex: 1;
   background-color: rgba(0, 0, 0, 0.9);
   border: 2px solid var(--blue);
   border-radius: 20px;
