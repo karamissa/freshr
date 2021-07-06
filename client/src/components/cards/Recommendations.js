@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYoutube, faSpotify } from '@fortawesome/free-brands-svg-icons';
+import { useContext } from 'react';
+import { RecommendationsContext } from '../../contexts/RecommendationsContext';
 
 const Wrapper = styled.div`
+  flex: 4;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1em;
@@ -24,6 +27,29 @@ const Recommendation = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5em;
+  transition: background-color 0.2s;
+
+  :hover {
+    background-color: rgba(220, 220, 220, 1);
+
+    p:first-child {
+      font-weight: bold;
+      color: var(--black);
+    }
+
+    p:nth-child(2) {
+      font-weight: bold;
+      color: var(--dark-gray);
+    }
+  }
+`;
+
+const LinkContainer = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  cursor: pointer;
 `;
 
 const Image = styled.img`
@@ -33,19 +59,29 @@ const Image = styled.img`
 `;
 
 const InfoWrapper = styled.div`
-  flex: 1;
   display: flex;
   flex-direction: column;
 `;
 
 const Title = styled.p`
   font-size: 1.2em;
+
+  transition: color 0.2s;
+
+  :hover {
+    color: var(--blue) !important;
+  }
 `;
 
 const ArtistName = styled.p`
   color: var(--gray);
   font-size: 1em;
   margin: 0.2em 0;
+  transition: color 0.2s;
+
+  :hover {
+    color: var(--blue) !important;
+  }
 `;
 
 const Links = styled.div`
@@ -63,17 +99,49 @@ const YoutubeLink = styled.a`
 `;
 
 const Recommendations = ({ recommendations }) => {
+  const { setChosenSuggestion } = useContext(RecommendationsContext);
+
+  const handleRecommendationClick = (e) => {
+    if (e.target.classList.contains('artist')) {
+      setChosenSuggestion({
+        id: e.target.dataset.id,
+        type: 'artist'
+      });
+    } else if (e.target.classList.contains('track')) {
+      setChosenSuggestion({
+        id: e.target.parentElement.parentElement.dataset.id,
+        type: 'track'
+      });
+    } else if (e.target.tagName === 'IMG' || e.target.tagName === 'DIV') {
+      setChosenSuggestion({
+        id: e.target.parentElement.dataset.id,
+        type: 'track'
+      });
+    }
+  };
+
   return (
     <Wrapper>
       {recommendations &&
         recommendations.map((recommendation) => {
           return (
             <Recommendation key={recommendation.id}>
-              <Image src={recommendation.images[2].url} />
-              <InfoWrapper>
-                <Title>{recommendation.name}</Title>
-                <ArtistName>{recommendation.artists[0].name}</ArtistName>
-              </InfoWrapper>
+              <LinkContainer
+                data-id={recommendation.id}
+                onClick={handleRecommendationClick}
+              >
+                <Image src={recommendation.images[2].url} />
+                <InfoWrapper>
+                  <Title className="track">{recommendation.name}</Title>
+                  <ArtistName
+                    data-id={recommendation.artists[0].id}
+                    className="artist"
+                  >
+                    {recommendation.artists[0].name}
+                  </ArtistName>
+                </InfoWrapper>
+              </LinkContainer>
+
               <Links>
                 <SpotifyLink
                   target="_blank"
