@@ -4,8 +4,7 @@ import { RecommendationsContext } from '../contexts/RecommendationsContext';
 import SearchWidget from './SearchWidget';
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+  position: relative;
   width: 50%;
 
   @media (max-width: 1024px) {
