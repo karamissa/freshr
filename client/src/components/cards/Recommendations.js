@@ -88,6 +88,12 @@ const Links = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5em;
+
+  @media (max-width: 600px) {
+    flex-direction: row;
+    font-size: 1.6em;
+    gap: 0.6em;
+  }
 `;
 
 const SpotifyLink = styled.a`
