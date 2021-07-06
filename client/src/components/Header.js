@@ -17,12 +17,13 @@ const Logo = styled.h1`
   font-size: 3em;
   font-weight: bold;
   color: var(--blue);
+  cursor: pointer;
 `;
 
 const Header = () => {
   return (
     <Wrapper>
-      <Logo>Freshr</Logo>
+      <Logo onClick={() => window.location.reload()}>Freshr</Logo>
       <a target="_blank" rel="noopener noreferrer" href="/">
         <FontAwesomeIcon icon={faGithub} size="2x" inverse />
       </a>
