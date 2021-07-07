@@ -1,8 +1,9 @@
 import { useContext, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { RecommendationsContext } from '../contexts/RecommendationsContext';
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
   position: absolute;
   background-color: var(--black);
   color: var(--white);
@@ -117,7 +118,11 @@ const SearchWidget = () => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <ArtistWrapper onClick={handleArtistClick}>
         {artistResults &&
           artistResults.map((artist) => (

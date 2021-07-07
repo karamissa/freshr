@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYoutube, faSpotify } from '@fortawesome/free-brands-svg-icons';
 import { useContext } from 'react';
 import { RecommendationsContext } from '../../contexts/RecommendationsContext';
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
   flex: 1;
   background-color: rgba(0, 0, 0, 0.9);
   border: 2px solid var(--blue);
@@ -113,7 +114,11 @@ const ArtistCard = ({ artist }) => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper
+      initial={{ x: '-100vw' }}
+      animate={{ x: 0 }}
+      transition={{ duration: 0.75 }}
+    >
       <ArtistInfo>
         <Image src={artist.images[0].url} />
         <InfoWrapper>

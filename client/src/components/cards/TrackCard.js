@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYoutube, faSpotify } from '@fortawesome/free-brands-svg-icons';
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
   flex: 1;
   background-color: rgba(0, 0, 0, 0.9);
   border: 2px solid var(--blue);
@@ -60,7 +61,11 @@ const YoutubeLink = styled(Link)`
 
 const TrackCard = ({ track }) => {
   return (
-    <Wrapper>
+    <Wrapper
+      initial={{ x: '-100vw' }}
+      animate={{ x: 0 }}
+      transition={{ duration: 0.75 }}
+    >
       <Image src={track.images[0].url} />
       <Title>{track.name}</Title>
       <TrackArtistsNames>{track.artists[0].name}</TrackArtistsNames>

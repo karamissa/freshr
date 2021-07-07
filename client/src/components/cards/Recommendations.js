@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYoutube, faSpotify } from '@fortawesome/free-brands-svg-icons';
 import { useContext } from 'react';
@@ -19,7 +20,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Recommendation = styled.div`
+const Recommendation = styled(motion.div)`
   background-color: rgba(0, 0, 0, 0.9);
   border: 2px solid var(--blue);
   border-radius: 20px;
@@ -131,7 +132,12 @@ const Recommendations = ({ recommendations }) => {
       {recommendations &&
         recommendations.map((recommendation) => {
           return (
-            <Recommendation key={recommendation.id}>
+            <Recommendation
+              key={recommendation.id}
+              initial={{ y: 200, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 1 }}
+            >
               <LinkContainer
                 data-id={recommendation.id}
                 onClick={handleRecommendationClick}
