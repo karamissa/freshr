@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   margin: 0 1em 1.5em;
 `;
 
-const SearchResults = () => {
+const SearchResult = () => {
   const { chosenSuggestion } = useContext(RecommendationsContext);
 
   const [result, setResult] = useState(null);
@@ -45,4 +45,4 @@ const SearchResults = () => {
   );
 };
 
-export default SearchResults;
+export default SearchResult;

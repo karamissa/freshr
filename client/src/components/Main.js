@@ -1,8 +1,8 @@
-import { useContext } from 'react';
+import { lazy, useContext, Suspense } from 'react';
 import styled from 'styled-components';
 import { RecommendationsContext } from '../contexts/RecommendationsContext';
 import SearchSection from './SearchSection';
-import SearchResult from './SearchResult';
+const SearchResult = lazy(async () => await import('./SearchResult'));
 
 const Wrapper = styled.main`
   display: flex;
@@ -27,6 +27,8 @@ const Main = () => {
     RecommendationsContext
   );
 
+  const renderLoad = () => <p>Loading...</p>;
+
   return (
     <Wrapper>
       <SearchSection />
@@ -38,8 +40,9 @@ const Main = () => {
           <p>Search for a song/artist you like to get recommendations :{')'}</p>
         </HelpText>
       )}
-
-      {chosenSuggestion && <SearchResult />}
+      <Suspense fallback={renderLoad()}>
+        {chosenSuggestion && <SearchResult />}
+      </Suspense>
     </Wrapper>
   );
 };
