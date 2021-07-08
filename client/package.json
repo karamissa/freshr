@@ -1,6 +1,6 @@
 {
   "name": "freshr-client",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
@@ -43,5 +43,6 @@
   },
   "resolutions": {
     "styled-components": "^5"
-  }
+  },
+  "proxy": "http://localhost:5000"
 }
