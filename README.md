@@ -18,8 +18,9 @@ Navigate to the client folder and Install front end dependencies:
     cd client
     npm install
 
-In the root project `frehsr` folder create a `.env` file & add your spotify client ID + client secret (You can get them [here](https://developer.spotify.com/dashboard/applications)) so the file should look like:
+In the root project `frehsr` folder create a `.env` file & add `NODE_ENV=development` to it along with your spotify client ID + client secret (You can get them [here](https://developer.spotify.com/dashboard/applications)) so the file should look like:
 
+    NODE_ENV=development
     SPOTIFY_CLIENT_ID=<Your Spotify client ID here>
     SPOTIFY_CLIENT_SECRET=<Your Spotify client secret here>
 
