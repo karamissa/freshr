@@ -12,6 +12,8 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 app.use(cors());
 
+app.use('/spotify', apiRoutes);
+
 if (environment === 'production') {
   app.use(express.static(path.join(__dirname, 'client', 'build')));
 
@@ -19,8 +21,6 @@ if (environment === 'production') {
     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
   });
 }
-
-app.use('/spotify', apiRoutes);
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
