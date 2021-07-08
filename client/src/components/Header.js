@@ -24,7 +24,11 @@ const Header = () => {
   return (
     <Wrapper>
       <Logo onClick={() => window.location.reload()}>Freshr</Logo>
-      <a target="_blank" rel="noopener noreferrer" href="/">
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://github.com/beardedpirate/freshr"
+      >
         <FontAwesomeIcon icon={faGithub} size="2x" inverse />
       </a>
     </Wrapper>
