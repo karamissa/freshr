@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { RecommendationsContext } from '../contexts/RecommendationsContext';
 
 const Wrapper = styled(motion.div)`
-  position: absolute;
   background-color: var(--black);
   color: var(--white);
   border-radius: 10px;
