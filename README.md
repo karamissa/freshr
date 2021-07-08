@@ -2,7 +2,7 @@
 
 ## Freshr is a music recommendation app. It uses the spotify API to search for artists/tracks & fetch recommendations.
 
-The app was built using React & Node.js. Framer Motion for React was also used and It's a very intuitive fun to use animation library.
+The app was built using React & Node.js. Styled using Styled Components & animated using Framer Motion.
 
 To get started with the project, you can clone the github repo:
 
