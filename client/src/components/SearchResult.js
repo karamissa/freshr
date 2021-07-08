@@ -21,7 +21,7 @@ const SearchResult = () => {
   useEffect(() => {
     const fetchResult = async () => {
       const res = await fetch(
-        `http://localhost:5000/spotify/${chosenSuggestion.type}/${chosenSuggestion.id}`
+        `/spotify/${chosenSuggestion.type}/${chosenSuggestion.id}`
       );
       const data = await res.json();
 

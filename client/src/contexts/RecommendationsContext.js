@@ -12,7 +12,7 @@ const RecommendationsContextProvider = ({ children }) => {
   // Check this: https://www.freecodecamp.org/news/debounce-and-throttle-in-react-with-hooks/
   const fetchSearchSuggestions = useRef(
     debounce(async (value) => {
-      const res = await fetch(`http://localhost:5000/spotify/search/${value}`);
+      const res = await fetch(`/spotify/search/${value}`);
       const data = await res.json();
 
       setSearchSuggestions(data);
