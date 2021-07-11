@@ -20,7 +20,7 @@ const Footer = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="https://github.com/beardedpirate"
+          href="https://github.com/karamissa"
           style={{ color: 'white' }}
         >
           Karam Issa

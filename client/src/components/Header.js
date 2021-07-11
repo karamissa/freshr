@@ -27,7 +27,7 @@ const Header = () => {
       <a
         target="_blank"
         rel="noopener noreferrer"
-        href="https://github.com/beardedpirate/freshr"
+        href="https://github.com/karamissa/freshr"
       >
         <FontAwesomeIcon icon={faGithub} size="2x" inverse />
       </a>
